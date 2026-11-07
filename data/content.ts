@@ -15,7 +15,7 @@ export const profile = {
   email: "akhandrajsingh30@gmail.com",
   phone: "+91 73796 60997",
   github: "https://github.com/Fit-akhand",
-  linkedin: "https://linkedin.com/in/akhand-raj-singh",
+  linkedin: "https://www.linkedin.com/in/akhand-raj-singh-75a1aa314",
   resume: "/Akhand_Raj_Singh_Resume.pdf",
   // Warm line shown beside your photo in the contact section.
   contactLine:

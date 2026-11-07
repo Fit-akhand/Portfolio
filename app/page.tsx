@@ -4,6 +4,7 @@ import Counter from "@/components/Counter";
 import Orbit from "@/components/Orbit";
 import ContactMenu from "@/components/ContactMenu";
 import Spotlight from "@/components/Spotlight";
+import ContactOptions from "@/components/ContactOptions";
 import { profile, stats, projects, principles, skills, experience, education } from "@/data/content";
 
 function SectionHead({ index, title }: { index: string; title: string }) {
@@ -171,11 +172,10 @@ export default function Home() {
               <p className="warm">{profile.contactLine}</p>
             </Reveal>
             <Reveal delay={0.16}>
-              <a className="mail" href={`mailto:${profile.email}`}>{profile.email}</a>
+              <ContactOptions email={profile.email} phone={profile.phone} />
               <div className="socials">
                 <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
                 <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-                <a href={`tel:${profile.phone.replace(/\s/g, "")}`}>{profile.phone}</a>
               </div>
             </Reveal>
           </div>

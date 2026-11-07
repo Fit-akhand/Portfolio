@@ -268,3 +268,14 @@ h1 .accent { background: linear-gradient(95deg, var(--text) 38%, var(--accent) 1
   .contact { padding: 80px 0; }
   .mail { font-size: 15px; word-break: break-all; }
 }
+
+/* contact: three options */
+.c-options { margin: 36px auto 0; max-width: 760px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; text-align: left; }
+.c-options a { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); transition: border-color .2s, transform .2s, box-shadow .2s; }
+.c-options a:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px var(--glow); }
+.c-options .ci { flex: none; width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-size: 19px; }
+.c-options .ct { min-width: 0; }
+.c-options b { display: block; font-size: 15px; font-weight: 600; }
+.c-options small { display: block; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.contact .socials { margin-top: 26px; }
+@media (max-width: 720px) { .c-options { grid-template-columns: 1fr; max-width: 420px; } }
