@@ -61,7 +61,7 @@ export default function CursorField() {
       const sr = small ? 150 : 230;
       const sigma2 = 2 * sr * sr;
       const maxLen = small ? 7 : 12;
-      const peak = small ? 0.5 : 0.7;
+      const peak = small ? 0.4 : 0.55;
       for (const d of dots) {
         const bx = d.x + d.jx, by = d.y + d.jy;
         const dx = cur.x - bx, dy = cur.y - by;
@@ -73,7 +73,7 @@ export default function CursorField() {
         const dist = Math.sqrt(dist2) || 1;
         const px = bx + (dx / dist) * pull, py = by + (dy / dist) * pull;
         const ca = Math.cos(ang) * len * 0.5, sa = Math.sin(ang) * len * 0.5;
-        ctx.strokeStyle = `rgba(${color},${0.08 + k * peak})`;
+        ctx.strokeStyle = `rgba(${color},${0.06 + k * peak})`;
         ctx.lineWidth = 1 + k * (small ? 0.6 : 1.1);
         ctx.beginPath();
         ctx.moveTo(px - ca, py - sa);

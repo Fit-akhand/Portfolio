@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Avatar from "@/components/Avatar";
 
 const sections = ["work", "thinking", "skills", "contact"];
 
@@ -42,7 +43,10 @@ export default function Nav() {
   return (
     <nav>
       <div className="wrap">
-        <a href="#top" className="logo">akhand<span>.</span>dev</a>
+        <div className="brand">
+          <Avatar />
+          <a href="#top" className="logo">akhand<span>.</span>dev</a>
+        </div>
         <div className="links">
           <a href="#work" className={cls("work", "hide-m")}>Work</a>
           <a href="#thinking" className={cls("thinking", "hide-m")}>Thinking</a>
