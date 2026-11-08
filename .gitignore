@@ -4,3 +4,8 @@ node_modules
 *.tsbuildinfo
 next-env.d.ts
 .claude/
+
+# secrets: never commit
+.env
+.env.local
+.env.*.local

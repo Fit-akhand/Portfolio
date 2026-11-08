@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CursorField from "@/components/CursorField";
 import ScrollProgress from "@/components/ScrollProgress";
+import ChatBot from "@/components/ChatBot";
 
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ScrollProgress />
         <CursorField />
         {children}
+        <ChatBot />
       </body>
     </html>
   );

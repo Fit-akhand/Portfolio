@@ -279,3 +279,69 @@ h1 .accent { background: linear-gradient(95deg, var(--text) 38%, var(--accent) 1
 .c-options small { display: block; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .contact .socials { margin-top: 26px; }
 @media (max-width: 720px) { .c-options { grid-template-columns: 1fr; max-width: 420px; } }
+
+/* ───────── hero fits short screens (height-aware sizing) ───────── */
+h1 { font-size: clamp(38px, min(7vw, 9.5vh), 68px); }
+.pill { margin-bottom: clamp(14px, 3vh, 32px); }
+.intro { margin-top: clamp(14px, 3vh, 28px); font-size: clamp(16px, 2.4vh, 18px); }
+.name-line { margin-top: clamp(14px, 3.4vh, 36px); }
+.cta { margin-top: clamp(18px, 4vh, 36px); }
+@media (min-width: 961px) and (max-height: 700px) {
+  .orbit-scale { --s: .7; height: 360px; }
+  .hero { padding-top: 76px; padding-bottom: 28px; }
+}
+
+/* short + wide windows (e.g. laptop browser with many toolbars) */
+@media (max-height: 700px) {
+  .hero { padding-top: 72px; padding-bottom: 20px; }
+  h1 { font-size: clamp(32px, min(6vw, 8vh), 68px); }
+  .pill { margin-bottom: 12px; padding: 4px 12px; }
+  .intro { margin-top: 12px; font-size: 15px; line-height: 1.5; }
+  .name-line { margin-top: 12px; }
+  .cta { margin-top: 16px; }
+}
+@media (min-width: 961px) and (max-height: 700px) {
+  .hero-grid { grid-template-columns: 1.3fr .9fr; }
+}
+
+/* ───────── chat assistant ───────── */
+.chat-fab { position: fixed; right: 20px; bottom: 20px; z-index: 70; height: 52px; padding: 0 20px 0 16px; display: flex; align-items: center; gap: 10px; border-radius: 999px; cursor: pointer; font: 500 14px var(--font-sans), system-ui, sans-serif; color: var(--text); background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 60%, var(--border)); box-shadow: 0 10px 36px rgba(0,0,0,.35), 0 0 30px var(--glow); transition: transform .2s, border-color .2s; }
+.chat-fab:hover { transform: translateY(-2px); border-color: var(--accent); }
+.chat-fab .spark { color: var(--accent); font-size: 18px; line-height: 1; }
+.chat-fab .ping { width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; animation: pulse 2s infinite; }
+
+.chat-panel { position: fixed; right: 20px; bottom: 84px; z-index: 70; width: min(392px, calc(100vw - 24px)); height: min(580px, calc(100dvh - 156px)); display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,.45), 0 0 40px var(--glow); animation: chatIn .28s cubic-bezier(.16,1,.3,1); }
+@keyframes chatIn { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+.chat-head { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+.chat-head img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 1.5px solid var(--accent); }
+.chat-head .t b { display: block; font-size: 14px; font-weight: 600; }
+.chat-head .t small { font-size: 12px; color: var(--muted); }
+.chat-x { margin-left: auto; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; font-size: 14px; }
+.chat-x:hover { border-color: var(--accent); }
+.chat-log { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; overscroll-behavior: contain; }
+.msg { max-width: 90%; font-size: 14px; line-height: 1.55; padding: 10px 14px; border-radius: 14px; overflow-wrap: anywhere; }
+.msg.bot { align-self: flex-start; background: color-mix(in srgb, var(--text) 5%, transparent); border: 1px solid var(--border); border-top-left-radius: 4px; }
+.msg.user { align-self: flex-end; background: var(--accent); color: #160a02; font-weight: 500; border-top-right-radius: 4px; }
+.msg b { font-weight: 600; }
+.b-li { position: relative; padding-left: 14px; margin-top: 3px; }
+.b-li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.b-gap { height: 8px; }
+.bchips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.bchip { font: 500 12px var(--font-sans), system-ui, sans-serif; padding: 7px 12px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 50%, var(--border)); background: var(--accent-soft); color: var(--text); cursor: pointer; display: inline-block; transition: border-color .15s; }
+.bchip:hover { border-color: var(--accent); }
+.typing { align-self: flex-start; display: flex; gap: 4px; padding: 13px 14px; border: 1px solid var(--border); border-radius: 14px; border-top-left-radius: 4px; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 0%, 60%, 100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
+.chat-form { display: flex; gap: 8px; padding: 12px 12px 8px; border-top: 1px solid var(--border); }
+.chat-form input { flex: 1; min-width: 0; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; font: 16px var(--font-sans), system-ui, sans-serif; outline: none; }
+.chat-form input:focus { border-color: var(--accent); }
+.chat-form button { padding: 0 16px; border-radius: 10px; border: 0; background: var(--accent); color: #160a02; font: 600 14px var(--font-sans), system-ui, sans-serif; cursor: pointer; }
+.chat-form button:disabled { opacity: .4; cursor: default; }
+.chat-note { text-align: center; font-size: 11px; color: var(--muted); padding: 0 12px 10px; }
+@media (max-width: 560px) {
+  .chat-fab { right: 14px; bottom: 14px; width: 52px; padding: 0; justify-content: center; }
+  .chat-fab .lbl, .chat-fab .ping { display: none; }
+  .chat-panel { left: 12px; right: 12px; width: auto; bottom: 76px; }
+}
+@media (prefers-reduced-motion: reduce) { .chat-panel { animation: none; } }

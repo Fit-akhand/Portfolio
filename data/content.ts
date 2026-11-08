@@ -25,7 +25,7 @@ export const profile = {
 
 export const stats = [
   { value: 1, suffix: "", label: "Product used in a real hostel" },
-  { value: 5, suffix: "", label: "RBAC roles in one system" },
+  { value: 4, suffix: "", label: "RBAC roles in one system" },
   { value: 310, suffix: "+", label: "LeetCode problems solved" },
   { value: 2, suffix: "", label: "Hackathons" },
 ];
@@ -55,18 +55,27 @@ export const orbit = {
 export const projects: Project[] = [
   {
     title: "The Hostel Yard",
-    tagline: "Hostel management SaaS for owners, landlords, managers, staff and tenants.",
+    tagline: "Hostel & PG management SaaS: rooms, beds, rent, payments, payroll and automated reminders.",
     status: "In real use",
     problem:
-      "Hostels run on spreadsheets and phone calls. One platform needed to serve five different roles across many organizations without ever leaking data between them.",
+      "Small hostel and PG owners run on paper registers, Excel sheets and WhatsApp groups: rent in notebooks, bed availability on a whiteboard, UPI screenshots matched to bank statements by hand. Generic accounting software doesn't understand beds and rent cycles, and hotel software is too heavy for a small PG.",
     highlights: [
-      "Running in a real hostel today, used by actual staff and tenants, not a demo",
-      "Organization-level data isolation with permission-based RBAC across 5 roles",
-      "JWT in HTTP-only cookies, Bcrypt, OTP verification, token versioning, expiring hashed reset & invite tokens",
-      "Allocation-conflict checks so a bed can never be double-booked, plus a reporting dashboard",
+      "Running in a real hostel today, used by actual staff and tenants, not a demo. Built solo end to end: design, frontend, backend, database and deployment",
+      "Models the business the way an owner thinks (Organization > Property > Room > Bed > Tenant). Every record is scoped so one business can never see another's data, and roles and per-property permissions are enforced on the server, not just hidden in the UI",
+      "Payments without a gateway: exact-amount UPI QR, UTR submission, duplicate-UTR blocking, numbered receipts, and bank-statement matching that parses the CSV in the browser so private bank data never leaves the owner's computer",
+      "Money rules written as tested pure functions: late fees, deposits and move-out settlement, attendance-based salary with mid-month joining and advance recovery, printable salary slips",
+      "Daily scheduler sends rent reminders over WhatsApp, SMS (Twilio) and e-mail, de-duplicated so nobody is ever messaged twice",
+      "JWT sessions in cookies, Bcrypt and OTP verification; a one-click Owner / Manager / Tenant guest demo with sample data, blocked from every write on the server",
+      "Debugged problems that only appeared in real use, such as a unique-index bug and a Vercel startup crash, by reading runtime logs",
     ],
-    flow: ["Properties", "Rooms", "Beds", "Tenants", "Bookings", "Rent", "Payments"],
-    stack: ["React.js", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "Bcrypt", "Zod"],
+    flow: ["Organization", "Property", "Room", "Bed", "Tenant", "Rent", "Payment"],
+    results: [
+      { value: "628", label: "tenants imported from real Excel rent sheets" },
+      { value: "100+", label: "REST API endpoints" },
+      { value: "74", label: "automated backend tests" },
+      { value: "30,000+", label: "lines of JavaScript" },
+    ],
+    stack: ["React 19", "Vite", "TanStack Query", "Zustand", "Tailwind CSS 4", "Node.js", "Express 5", "MongoDB", "Mongoose", "Zod", "JWT", "Bcrypt", "Twilio", "Cloudinary", "Vercel"],
     live: "https://the-hostel-yard-phi.vercel.app/",
     repo: "https://github.com/Fit-akhand/the-hostel-yard",
   },
