@@ -67,6 +67,14 @@ const projectKeywords: Record<string, string[]> = {
   "wellmind ai": ["wellmind", "well mind", "mental", "wellness", "therap", "rag", "faiss", "llm", "counsel", "emotion", "mistral", "embedding", "retrieval", "helpline", "ai"],
 };
 
+/** Titles of the projects a piece of text is about (used to keep AI prompts small). */
+export function matchedProjects(text: string): string[] {
+  const q = clean(text);
+  return projects
+    .filter((p) => (projectKeywords[p.title.toLowerCase()] ?? [p.title.toLowerCase()]).some((k) => has(q, k)))
+    .map((p) => p.title);
+}
+
 /* ───────── tech questions ───────── */
 const TECH = [
   { name: "React", al: ["react", "reactjs", "react.js"], key: "react" },

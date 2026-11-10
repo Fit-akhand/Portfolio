@@ -34,6 +34,7 @@ export default function ChatBot() {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [ai, setAi] = useState<boolean | null>(null); // null = not checked yet
+  const [provider, setProvider] = useState<"groq" | "claude" | null>(null);
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const fabRef = useRef<HTMLButtonElement>(null);
@@ -48,7 +49,10 @@ export default function ChatBot() {
     if (open && ai === null) {
       fetch("/api/chat")
         .then((r) => r.json())
-        .then((d: { ai?: boolean }) => setAi(Boolean(d.ai)))
+        .then((d: { ai?: boolean; provider?: "groq" | "claude" | null }) => {
+          setAi(Boolean(d.ai));
+          setProvider(d.provider ?? null);
+        })
         .catch(() => setAi(false));
     }
   }, [open, ai]);
@@ -121,7 +125,7 @@ export default function ChatBot() {
             <img src="/akhand.jpg" alt="" />
             <div className="t">
               <b>Ask about Akhand</b>
-              <small>{ai ? "AI assistant · powered by Claude" : "Portfolio assistant · replies instantly"}</small>
+              <small>{ai ? `AI assistant · powered by ${provider === "groq" ? "Groq" : "Claude"}` : "Portfolio assistant · replies instantly"}</small>
             </div>
             <button className="chat-x" onClick={() => { setOpen(false); fabRef.current?.focus(); }} aria-label="Close chat">✕</button>
           </div>
@@ -170,7 +174,7 @@ export default function ChatBot() {
           </form>
           <div className="chat-note">
             {ai
-              ? "Replies are written by an AI using this site's content. Your messages are sent to an AI service, so please don't share sensitive info."
+              ? `Replies are written by an AI using this site's content. Your messages are sent to ${provider === "groq" ? "Groq" : "Anthropic"} to generate replies, so please don't share sensitive info.`
               : "Answers come from this site's content. Nothing leaves your browser."}
           </div>
         </div>
