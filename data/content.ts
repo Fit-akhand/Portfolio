@@ -3,6 +3,10 @@
 // file, then `git push` (Vercel redeploys automatically).
 // ─────────────────────────────────────────────────────────────
 
+// Public address of the site (used for share previews, sitemap and canonical links).
+// Change it here, or set NEXT_PUBLIC_SITE_URL, when you add a custom domain.
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://portfolio-cyan-kappa-16.vercel.app";
+
 export const profile = {
   name: "Akhand Raj Singh",
   role: "Full Stack Developer",

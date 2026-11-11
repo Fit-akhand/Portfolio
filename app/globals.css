@@ -448,3 +448,7 @@ footer { border-top-width: .5px; }
 @keyframes eyeBlink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.08); } }
 .pupil { transform: translate(var(--ex, 0px), var(--ey, 0px)); transition: transform .12s ease-out; }
 @media (max-width: 720px) { .brand { gap: 12px; } .avatar { width: 40px; height: 40px; border-radius: 12px; } }
+
+/* above-the-fold entrance: CSS only, so the hero is visible before JavaScript loads */
+.rise { animation: rise 1s cubic-bezier(.28, .11, .32, 1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(44px); } }

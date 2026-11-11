@@ -7,11 +7,20 @@ type Props = {
   y?: number;
   as?: "div" | "li" | "span";
   className?: string;
+  /** Above-the-fold content: animate with pure CSS so it paints without waiting for JavaScript. */
+  instant?: boolean;
 };
 
 // Rises gently from below as it scrolls into view. Honors "reduce motion".
-export default function Reveal({ children, delay = 0, y = 44, as = "div", className }: Props) {
+export default function Reveal({ children, delay = 0, y = 44, as = "div", className, instant }: Props) {
   const reduce = useReducedMotion();
+  if (instant) {
+    return (
+      <div className={`rise ${className ?? ""}`.trim()} style={{ animationDelay: `${delay}s` }}>
+        {children}
+      </div>
+    );
+  }
   const Comp = motion[as];
   return (
     <Comp

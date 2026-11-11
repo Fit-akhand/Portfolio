@@ -26,7 +26,7 @@ export default function Home() {
         <section className="hero">
           <div className="wrap">
             <div className="hero-grid">
-              <Reveal>
+              <Reveal instant>
                 <div className="pill"><span className="dot" />{profile.status}</div>
                 <h1>
                   <span className="dim">{profile.headline}</span>
@@ -41,7 +41,7 @@ export default function Home() {
                   <a href={profile.github} className="btn" target="_blank" rel="noreferrer">GitHub<i className="ar"> ↗</i></a>
                 </div>
               </Reveal>
-              <Reveal delay={0.2}><Orbit /></Reveal>
+              <Reveal instant delay={0.2}><Orbit /></Reveal>
             </div>
           </div>
           <div className="scroll-cue" aria-hidden="true"><span>scroll</span><i /></div>
